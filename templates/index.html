@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Leave Assistant</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            margin: 0;
+            padding: 40px 16px;
+        }
+
+        .container {
+            max-width: 560px;
+            margin: auto;
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #00000015;
+        }
+
+        h1 {
+            color: #1e293b;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin: 18px 0 8px;
+        }
+
+        input, button {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 22px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 24px;
+            padding: 18px;
+            background: #eff6ff;
+            border-radius: 8px;
+        }
+
+        .error {
+            background: #fef2f2;
+            color: #991b1b;
+        }
+
+        .note {
+            margin-top: 18px;
+            color: #475569;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Employee Leave Assistant</h1>
+
+        <p>
+            Calculate leave duration for a date range in 2026.
+            Weekends and company holidays are excluded from leave days.
+        </p>
+
+        <form method="POST">
+            <label for="start_date">Start date</label>
+            <input
+                type="date"
+                id="start_date"
+                name="start_date"
+                min="2026-01-01"
+                max="2026-12-31"
+                value="{{ start_date }}"
+                required
+            >
+
+            <label for="end_date">End date</label>
+            <input
+                type="date"
+                id="end_date"
+                name="end_date"
+                min="2026-01-01"
+                max="2026-12-31"
+                value="{{ end_date }}"
+                required
+            >
+
+            <button type="submit">Calculate leave</button>
+        </form>
+
+        {% if result %}
+            {% if result.get("error") %}
+                <div class="result error">
+                    <h2>Unable to calculate</h2>
+                    <p>{{ result.error }}</p>
+                </div>
+            {% else %}
+                <div class="result">
+                    <h2>Calculation result</h2>
+
+                    <p>
+                        Calendar days:
+                        <strong>{{ result.calendar_days }}</strong>
+                    </p>
+
+                    <p>
+                        Leave days:
+                        <strong>{{ result.leave_days }}</strong>
+                    </p>
+
+                    <p>
+                        Weekend days:
+                        <strong>{{ result.weekend_days }}</strong>
+                    </p>
+
+                    <p>
+                        Holiday days:
+                        <strong>{{ result.holiday_days }}</strong>
+                    </p>
+                </div>
+            {% endif %}
+        {% endif %}
+
+        <p class="note">
+            Calculating leave days does not submit or approve a leave request.
+            Manager approval is required for every leave request.
+        </p>
+    </div>
+</body>
+</html>

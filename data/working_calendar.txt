@@ -1,0 +1,15 @@
+
+Working days are Monday through Friday.
+
+Saturday and Sunday are non-working days.
+
+The fictional company holidays for 2026 are:
+
+2026-01-01
+2026-08-14
+2026-12-25
+
+Leave days are counted inclusively from start to end.
+Exclude weekends and the listed holidays.
+
+This project supports date ranges within 2026 only.

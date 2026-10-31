@@ -1,0 +1,13 @@
+
+Employees receive 12 casual leave days and 10 sick leave
+days per calendar year.
+
+Casual leave covers personal commitments. Sick leave
+covers illness and recovery.
+
+A medical document is required for sick leave lasting
+more than two consecutive working days.
+
+Unused casual leave does not carry forward.
+
+The assistant cannot access an employee's remaining balance.
